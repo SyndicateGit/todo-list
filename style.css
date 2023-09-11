@@ -43,9 +43,9 @@ a{
 
   background: var(--background);
 
-  height: 60px;
-  gap: 1.5rem;
-  padding: 1.5rem;
+  height: 75px;
+  gap: 3rem;
+  padding: 30px;
 }
 
 .title{
@@ -60,20 +60,54 @@ a{
   gap: 5px;
 }
 
-.logo>img{
+.header-icon{
   width: auto;
   height: 2rem;
 }
 
 #menu-button{
-  height: 2rem;
-  width: auto;
+  border-radius: 3px;
+  background: var(--agua);
+  cursor: pointer;
+}
+
+/*Main section*/
+.main{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+/*Nav section in Main*/
+nav{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  width: 350px;
+  height: 100%;
+
+  padding: 30px;
+  background-color: whitesmoke;
+}
+
+.timeline-container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.nav-button{
+  display: flex;
+  justify-content: start;
+  align-items: center;
 
   border-radius: 3px;
-
-  background: var(--dark-aqua);
-
-  cursor: pointer;
+  background-color: white;
+}
+.nav-icon{
+  height: 40px;
+  width: auto;
 }
 
 /*Footer Section*/
