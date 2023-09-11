@@ -5,10 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title><%= htmlWebpackPlugin.options.title %></title>
-    
+    <link rel="stylesheet" href="../style.css">
   <body>
-    <div class="content" id="content">
-      
+    <div class="content">
+      <header class="header">
+        <img id="menu-button" class="black-to-white-filter" src="../img/menu.svg" alt="menu-button">
+        <div class="logo">
+          <img class="black-to-white-filter" src="../img/logo.png" alt="logo">
+          <h1 class="title">ToDo</h1>
+        </div>
+      </header>
+      <nav class="nav"></nav>
+      <main class="main"></main>
+      <footer class="footer">
+        <a id="github_link" href="https://github.com/SyndicateGit"><p>Copyright © SyndicateGit</p><img src="../img/github_icon.png" alt="github_icon" id="github-icon" class="black-to-white-filter"></a>
+      </footer>
     </div>
   </body>
 </html>
