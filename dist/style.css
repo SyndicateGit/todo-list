@@ -110,9 +110,10 @@ nav{
   cursor: pointer;
 }
 .nav-icon,
-.project-icon{
+.new-project-icon{
   height: 40px;
   width: auto;
+  cursor: pointer;
 }
 
 .projects-container{
@@ -149,6 +150,7 @@ nav{
 
   cursor: pointer;
 }
+
 
 /*Footer Section*/
 .footer{

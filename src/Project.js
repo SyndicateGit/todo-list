@@ -13,11 +13,7 @@ export default class Project{
     return this.title
   }
 
-  setColor(color){
-    this.color = color;
-  }
-
-  getColor(){
-    return this.color;
+  addTask(Task){
+    this.tasks.append(Task);
   }
 }
