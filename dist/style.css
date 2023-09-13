@@ -83,12 +83,19 @@ nav{
   flex-direction: column;
   flex: 1;
 
-  width: 350px;
+  width: 250px;
   height: 100%;
 
   padding: 30px;
   background-color: whitesmoke;
 
+}
+
+.nav-content-container{
+  /*This is needed to keep projects same position when adding new projects. Before with flex it shifted upwards.*/
+  flex: 1;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
 }
 
 .timeline-container{
@@ -138,8 +145,10 @@ nav{
   display: flex;
   flex-direction: column;
   flex: 1;
+  
+  gap: 20px;
 }
-.project-button{
+.project-tab{
   display: flex;
   justify-content: start;
   align-items: center;
@@ -151,7 +160,59 @@ nav{
   cursor: pointer;
 }
 
+/*New Project Form*/
 
+#new-project-form{
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  background-color: white;
+  border-radius: 3px;
+  
+  border: 2px solid black;
+
+  cursor: pointer;
+}
+
+
+.project-form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.project-input{
+  flex: 1;
+  height: 100%;
+  outline: none;
+  padding-left: 1rem;
+}
+
+.project-buttons-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.project-button{
+  text-align: center;
+  width: 80px;
+  height: 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.add{
+  background-color: #aaffaa;
+  border-color: #99dd99;
+}
+
+.cancel{
+  background-color: #ffbebe;
+  border-color: #eeadad;
+}
 /*Footer Section*/
 .footer{
   margin-top: auto;

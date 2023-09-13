@@ -7,17 +7,7 @@ function addNewProjectEventListener(){
   document.getElementById("new-project-icon").addEventListener("click", function(e){
     // Prevent Creating new project form when form already exist
     const existingForm = document.getElementById("new-project-form");
-    
-    if(existingForm){
-      console.log("Form already exist");
-      return;
-    }
-
-    const projects = document.getElementById("projects-list");
-    const newProjectForm = document.createElement("button");
-    newProjectForm.setAttribute("id", "new-project-form")
-    
-    projects.appendChild(newProjectForm);
+    //TODO: Make form visible when +, not when cancel
   });
 }
 
