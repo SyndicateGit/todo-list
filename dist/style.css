@@ -78,7 +78,7 @@ a{
   flex: 1;
 }
 /*Nav section in Main*/
-nav{
+.nav{
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -89,19 +89,28 @@ nav{
   padding: 30px;
   background-color: whitesmoke;
 
+  transition: 0.3s ease-in-out;
+
+  transform: translateX(-100%);
 }
 
+.nav.toggled{
+  transform: translateX(0%);
+}
 .nav-content-container{
-  /*This is needed to keep projects same position when adding new projects. Before with flex it shifted upwards.*/
+  /*
   flex: 1;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
+  */
 }
 
 .timeline-container{
-  display: flex;
+  /*Don't display until I implement its function*/
+  display: none;
   flex-direction: column;
   flex: 1;
+
   gap: 20px;
   margin-top: 20px;
 }
@@ -148,11 +157,18 @@ nav{
   
   gap: 20px;
 }
+
+.projects-list{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .project-tab{
   display: flex;
   justify-content: start;
   align-items: center;
 
+  width: 100%;
 
   border-radius: 3px;
   background-color: white;
@@ -179,7 +195,7 @@ nav{
 
 
 .project-form{
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 20px;
 }

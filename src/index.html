@@ -38,18 +38,18 @@
                 <h2>Projects</h2>
                 <img id="new-project-icon" class="new-project-icon" src="../img/new-project.svg" alt="">
               </div>
-              <div class="projects" id="projects-list">
-                <button class="project-tab">
-                  <img class="nav-icon" src="../img/menu.svg" alt="">
-                  <h2>Project1 Title</h2>
-                </button>
-                <form class="project-form" action="https://httpbin.org/post" method="post">
+              <div class="projects">
+                <div class="projects-list">
+                  <!--Generated-->
+                </div>
+                <form id="project-form" class="project-form" action="https://httpbin.org/post" method="post">
                   <div id="new-project-form">
-                    <input class="project-input" type="text" name="project_title" placeholder="New Project Title">
+                    <input class="project-input" type="text" name="project_title"
+                    id="project-title" placeholder="New Project Title">
                   </div>
                   <div class="project-buttons-container">
                     <button class="project-button add" type="submit">Add</button>
-                    <button class="project-button cancel">Cancel</button>
+                    <button class="project-button cancel" id="cancel-button" type="button">Cancel</button>
                   </div>
                 </form>
               </div>

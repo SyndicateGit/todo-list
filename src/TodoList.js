@@ -8,4 +8,8 @@ export default class TodoList{
   addProject(Project){
     this.projects.append(Project);
   }
+
+  displayProjects(){
+    
+  }
 }
