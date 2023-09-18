@@ -1,5 +1,4 @@
 import Project from "./Project.js"
-import TodoList from "./TodoList.js"
 import Task from "./task.js";
 
 // Opens form to add project

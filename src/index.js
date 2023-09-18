@@ -19,6 +19,12 @@ function addProject(){
 
     // Create project and push to projects
     const project_title = document.getElementById('project-title').value;
+
+    if(projectTitleAlreadyExist(project_title)){
+      alert("Project Title Already Exist.");
+      return;
+    }
+    
     createProject(project_title);
 
     refreshProjects()
@@ -27,8 +33,28 @@ function addProject(){
     document.getElementById("project-title").value = '';
     form.style = 'none';
   })
+
 }
 
+function projectTitleAlreadyExist(Title){
+  let flag = false;
+  projects.forEach((project)=>{
+    if(project.title == Title){
+      flag = true;
+    }
+  })
+  return flag;
+}
+
+function fetchProject(Title){
+  let fetch;
+  projects.forEach((project)=>{
+    if(project.title == Title){
+      fetch = project;
+    }
+  })
+  return fetch;
+}
 function refreshProjects(){
   // Deletes projects
   const projectList = document.querySelector(".projects-list");
@@ -72,13 +98,26 @@ function setProjectActive(project){
     }
     else{
       e.classList.add("active-project");
+      displayActiveProjectTasks(project);
     }
   })
 }
 
 // TODO: Display Tasks in Project.
 function displayActiveProjectTasks(project){
-  
+  const tasksContainer = document.querySelector(".tasks-container");
+  tasksContainer.innerHTML = "";
+
+  const activeProject = fetchProject(project.id);
+  displayActiveProjectTitle(activeProject.title);
+}
+
+function displayActiveProjectTitle(title){
+  const tasksContainer = document.querySelector(".tasks-container");
+  const titleElement = document.createElement("h1");
+  titleElement.textContent = title;
+
+  tasksContainer.appendChild(titleElement);
 }
 createProject("Project 1Title");
 addProject();

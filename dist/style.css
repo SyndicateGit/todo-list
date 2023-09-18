@@ -74,17 +74,18 @@ a{
 /*Main section*/
 .main{
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   flex: 1;
 }
 /*Nav section in Main*/
 .nav{
   display: flex;
   flex-direction: column;
-  flex: 1;
+  
+  width: 0px;
+  height: 100vh;
 
-  width: 250px;
-  height: 100%;
+  position: static;
 
   padding: 30px;
   background-color: whitesmoke;
@@ -96,6 +97,7 @@ a{
 
 .nav.toggled{
   transform: translateX(0%);
+  width: 250px;
 }
 .nav-content-container{
   /*
@@ -172,10 +174,13 @@ a{
 
   border-radius: 3px;
   background-color: white;
-
+  
   cursor: pointer;
 }
 
+h2{
+  overflow: hidden;
+}
 /*New Project Form*/
 
 #new-project-form{
@@ -228,6 +233,17 @@ a{
 .cancel{
   background-color: #ffbebe;
   border-color: #eeadad;
+}
+
+.active-project{
+  background-color: var(--light-aqua);
+}
+/*Tasks Section*/
+
+.tasks-container{
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 /*Footer Section*/
 .footer{
