@@ -1,5 +1,6 @@
 import Project from "./Project";
 import addAllDomEvents from "./dom";
+import Task from "./task";
 
 var projects = [];
 
@@ -8,6 +9,7 @@ addAllDomEvents();
 function createProject(title){
   const project = new Project(title);
   projects.push(project);
+  return project;
 }
 
 function addProject(){
@@ -110,6 +112,9 @@ function displayActiveProjectTasks(project){
 
   const activeProject = fetchProject(project.id);
   displayActiveProjectTitle(activeProject.title);
+
+  let activeTasks = activeProject.getTasks();
+  console.log(activeTasks);
 }
 
 function displayActiveProjectTitle(title){
@@ -119,6 +124,18 @@ function displayActiveProjectTitle(title){
 
   tasksContainer.appendChild(titleElement);
 }
-createProject("Project 1Title");
+
+function createTask(title, description, dueDate, priority, completed){
+  const task = new Task(title, description, dueDate, priority, completed);
+  console.log(task);
+  return task;
+}
+
+
+// Pre-existing project with task
+let existingProj = createProject("Project 1Title");
+existingProj.addTask(createTask("Task1", "Task 1 Description", "Due Date", 3, false));
+existingProj.addTask(createTask("Task2", "Task 2 Description", "Due Date", 2, false));
+
 addProject();
 refreshProjects();

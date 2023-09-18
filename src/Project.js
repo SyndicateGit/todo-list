@@ -14,6 +14,10 @@ export default class Project{
   }
 
   addTask(Task){
-    this.tasks.append(Task);
+    this.tasks.push(Task);
+  }
+
+  getTasks(){
+    return this.tasks;
   }
 }
