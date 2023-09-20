@@ -3,6 +3,7 @@ import addAllDomEvents from "./dom";
 import Task from "./task";
 
 var projects = [];
+var activeProject; // Remembers which project is actively displayed
 
 addAllDomEvents();
 
@@ -30,6 +31,7 @@ function addProject(){
     createProject(project_title);
 
     refreshProjects()
+    
 
     // Reset and hide project form after add.
     document.getElementById("project-title").value = '';
@@ -81,9 +83,12 @@ function refreshProjects(){
 
     // Add active to active project
     project.addEventListener("click", function(){
+      activeProject = project.id;
       setProjectActive(project);
       displayActiveProjectTasks(project);
     })
+
+    setProjectActive(document.getElementById(activeProject));
 
     projectList.appendChild(project);
   })
@@ -91,7 +96,7 @@ function refreshProjects(){
 }
 
 // Sets active project class active.
-function setProjectActive(project){
+function setProjectActive(project){ 
   const buttons = document.querySelectorAll(".project-tab");
 
   buttons.forEach((e)=>{
