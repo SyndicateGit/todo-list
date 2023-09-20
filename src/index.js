@@ -38,7 +38,7 @@ function addProject(){
 
 }
 
-function projectTitleAlreadyExist(Title){
+function projectTitleAlreadyExist(Title){ // Added to TodoPage Class
   let flag = false;
   projects.forEach((project)=>{
     if(project.title == Title){
@@ -48,7 +48,7 @@ function projectTitleAlreadyExist(Title){
   return flag;
 }
 
-function fetchProject(Title){
+function fetchProject(Title){ // Added to TodoPage Class 
   let fetch;
   projects.forEach((project)=>{
     if(project.title == Title){
