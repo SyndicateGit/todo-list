@@ -1,6 +1,3 @@
-import Project from "./Project.js"
-import Task from "./task.js";
-
 // Opens form to add project
 function addNewProjectForm(){
   document.getElementById("new-project-icon").addEventListener("click", function(e){
