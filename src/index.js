@@ -107,22 +107,17 @@ function setProjectActive(project){
 
 // TODO: Display Tasks in Project.
 function displayActiveProjectTasks(project){
-  const tasksContainer = document.querySelector(".tasks-container");
-  tasksContainer.innerHTML = "";
-
   const activeProject = fetchProject(project.id);
   displayActiveProjectTitle(activeProject.title);
 
   let activeTasks = activeProject.getTasks();
-  console.log(activeTasks);
+  console.log(activeTasks); // TODO: display tasks
 }
 
-function displayActiveProjectTitle(title){
-  const tasksContainer = document.querySelector(".tasks-container");
-  const titleElement = document.createElement("h1");
-  titleElement.textContent = title;
 
-  tasksContainer.appendChild(titleElement);
+function displayActiveProjectTitle(title){
+  const projectTitle = document.querySelector(".project-title"); 
+  projectTitle.textContent = title;
 }
 
 function createTask(title, description, dueDate, priority, completed){
@@ -130,6 +125,9 @@ function createTask(title, description, dueDate, priority, completed){
   console.log(task);
   return task;
 }
+
+
+
 
 
 // Pre-existing project with task
