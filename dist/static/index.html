@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><script defer src="bundle.js?fb95d75adbf274e9bff0"></script></head>
+<html><head><script defer src="bundle.js?b1eb69ddf5d2cd483e3c"></script></head>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -57,12 +57,22 @@
           </nav>
         <div class="tasks-container">
           <h1 class="project-title">Select A Project</h1>
-          <div class="create-task-container"></div>
+          <div class="create-task-container">       <input type="text" id="task-title" placeholder="Task Title">
+            <input type="date" name="date" id="date">
+            <label for="color-priority">Priority:</label>
+            <select name="color-priority" id="priority">
+              <option value="red">High</option>
+              <option value="yellow">Medium</option>
+              <option value="green">Low</option>
+            </select>
+          
+          </div>
+
           <div class="tasks">
             <div class="task">
+              <button class="completed"></button>
               <div class="task-title">Task Title</div>
-              <div class="due-date"></div>
-              <div class="priority"></div>
+              <div class="date">Date</div>
             </div>
           </div>
         </div>

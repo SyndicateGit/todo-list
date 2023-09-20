@@ -79,6 +79,7 @@ function refreshProjects(){
     const deleteIcon = document.createElement('img');
     deleteIcon.classList.add("nav-icon");
     deleteIcon.src="../img/delete-icon.svg";
+    deleteIcon.classList.add("delete-project"); // TODO: Add delete project event listener.
 
     project.id = arrayItem.title;
 
@@ -130,8 +131,8 @@ function displayActiveProjectTitle(title){
   projectTitle.textContent = title;
 }
 
-function createTask(title, description, dueDate, priority, completed){
-  const task = new Task(title, description, dueDate, priority, completed);
+function createTask(title, description, dueDate, priority, color, completed){
+  const task = new Task(title, description, dueDate, priority, color, completed);
   console.log(task);
   return task;
 }
