@@ -245,7 +245,22 @@ h2{
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 10px;
+  gap: 20px;
 }
+
+.create-task-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  gap: 15px;
+  padding: 20px;
+  border-radius: 3px;
+  background-color: var(--light-aqua);
+
+}
+
 /*Footer Section*/
 .footer{
   margin-top: auto;
