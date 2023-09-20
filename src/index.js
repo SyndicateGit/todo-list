@@ -76,10 +76,15 @@ function refreshProjects(){
     const projectTitle = document.createElement("h2");
     projectTitle.textContent = arrayItem.title;
 
+    const deleteIcon = document.createElement('img');
+    deleteIcon.classList.add("nav-icon");
+    deleteIcon.src="../img/delete-icon.svg";
+
     project.id = arrayItem.title;
 
     project.appendChild(projectIcon);
     project.appendChild(projectTitle);
+    project.appendChild(deleteIcon);
 
     // Add active to active project
     project.addEventListener("click", function(){
