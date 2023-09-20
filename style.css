@@ -97,7 +97,7 @@ a{
 
 .nav.toggled{
   transform: translateX(0%);
-  width: 250px;
+  width: 300px;
 }
 .nav-content-container{
   /*
@@ -167,7 +167,7 @@ a{
 }
 .project-tab{
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
 
   width: 100%;
