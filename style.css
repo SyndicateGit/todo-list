@@ -257,9 +257,17 @@ h2{
   gap: 15px;
   padding: 20px;
   border-radius: 3px;
+  border: 2px solid;
   background-color: var(--light-aqua);
-
 }
+
+input,
+select{
+  padding: 5px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
 
 /*Footer Section*/
 .footer{
