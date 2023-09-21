@@ -2,14 +2,21 @@ import Project from "./Project";
 import addAllDomEvents from "./dom";
 import Task from "./task";
 
-var projects = [];
-var activeProject; // Remembers which project is actively displayed
+
 
 addAllDomEvents();
 
+class Todo{
+  constructor(){
+    this.projects = [];
+    this.activeProject; // Remembers which project is active
+  }
+}
+
+const todo = new Todo();
+
 function createProject(title){
   const project = new Project(title);
-  projects.push(project);
   return project;
 }
 
@@ -28,7 +35,7 @@ function addProject(){
       return;
     }
     
-    createProject(project_title);
+    todo.projects.push(createProject(project_title));
 
     refreshProjects()
     
@@ -42,7 +49,7 @@ function addProject(){
 
 function projectTitleAlreadyExist(Title){ // Added to TodoPage Class
   let flag = false;
-  projects.forEach((project)=>{
+  todo.projects.forEach((project)=>{
     if(project.title == Title){
       flag = true;
     }
@@ -52,20 +59,21 @@ function projectTitleAlreadyExist(Title){ // Added to TodoPage Class
 
 function fetchProject(Title){ // Added to TodoPage Class 
   let fetch;
-  projects.forEach((project)=>{
+  todo.projects.forEach((project)=>{
     if(project.title == Title){
       fetch = project;
     }
   })
   return fetch;
 }
+
 function refreshProjects(){
   // Deletes projects
   const projectList = document.querySelector(".projects-list");
   projectList.innerHTML = '';
 
   // Reloads projects
-  projects.forEach(function(arrayItem){
+  todo.projects.forEach(function(arrayItem){
     const project = document.createElement("button");
     project.classList.add("project-tab");
 
@@ -89,16 +97,15 @@ function refreshProjects(){
 
     // Add active to active project
     project.addEventListener("click", function(){
-      activeProject = project.id;
+      todo.activeProject = project.id;
       setProjectActive(project);
       displayActiveProjectTasks(project);
     })
 
-    setProjectActive(document.getElementById(activeProject));
+    setProjectActive(document.getElementById(todo.activeProject));
 
     projectList.appendChild(project);
   })
-
 }
 
 // Sets active project class active.
@@ -145,6 +152,8 @@ function createTask(title, description, dueDate, priority, color, completed){
 let existingProj = createProject("Project 1Title");
 existingProj.addTask(createTask("Task1", "Task 1 Description", "Due Date", 3, false));
 existingProj.addTask(createTask("Task2", "Task 2 Description", "Due Date", 2, false));
+
+todo.projects.push(existingProj);
 
 addProject();
 refreshProjects();
