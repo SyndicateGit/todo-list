@@ -310,10 +310,10 @@ label{
   flex-direction: column;
   width: 75%;
   border-radius: 3px;
-  transition: 0.3s ease-in-out;
+
 }
 
-.tasks:hover{
+.task:hover{
   background-color: whitesmoke;
 }
 
@@ -325,6 +325,7 @@ label{
   font-weight: bold;
   font-size: 1.3rem;
   gap: 2.9rem;
+  transition: 0.3s ease-in-out;
 }
 
 .task-left, 
