@@ -98,7 +98,7 @@ function refreshProjects(){
     project.addEventListener("click", function(){
       todo.activeProject = project.id;
       setProjectActive(project);
-      displayActiveProjectTasks(project);
+      displayActiveProjectTasks(project.id);
     })
 
     setProjectActive(document.getElementById(todo.activeProject));
@@ -117,19 +117,18 @@ function setProjectActive(project){
     }
     else{
       e.classList.add("active-project");
-      displayActiveProjectTasks(project);
+      displayActiveProjectTasks(project.id);
     }
   })
 }
 
-// TODO: Display Tasks in Project.
-function displayActiveProjectTasks(project){
-  const activeProject = fetchProject(project.id);
-  displayActiveProjectTitle(activeProject.title);
+function displayActiveProjectTasks(projectTitle){
+  const activeProject = fetchProject(projectTitle);
+  displayActiveProjectTitle(projectTitle);
+
 
   let activeTasks = activeProject.getTasks();
 
-  console.log(activeTasks); // TODO: display tasks
   
   clearTasks();
 
@@ -139,7 +138,7 @@ function displayActiveProjectTasks(project){
   })
 }
 
-function createTaskDiv(task){ //TODO
+function createTaskDiv(task){ 
   const taskDiv = document.createElement("div");
   taskDiv.classList.add("task")
   taskDiv.id = task.title;
@@ -152,7 +151,7 @@ function createTaskDiv(task){ //TODO
   return taskDiv;
 }
 
-function createTaskLeft(task){ //TODO
+function createTaskLeft(task){ 
   const taskLeft = document.createElement("div");
   taskLeft.classList.add("task-left");
 
@@ -161,6 +160,7 @@ function createTaskLeft(task){ //TODO
   taskComplete.classList.add("complete"); 
   taskComplete.type = "image";
   taskComplete.src = "../img/circle-outline.svg";
+  //TODO: Add complete task function
 
   const taskTitle = document.createElement("div");
   taskTitle.classList.add("task-title")
@@ -172,7 +172,7 @@ function createTaskLeft(task){ //TODO
   return taskLeft
 }
 
-function createTaskRight(task){// TODO
+function createTaskRight(task){
   const taskRight = document.createElement("div");
   taskRight.classList.add("task-right");
 
@@ -188,6 +188,7 @@ function createTaskRight(task){// TODO
   deleteBtn.classList.add("delete");
   deleteBtn.type = "image";
   deleteBtn.src = "../img/delete-icon.svg";
+  //TODO: delete task function
 
   taskRight.appendChild(due);
   taskRight.appendChild(date);
@@ -199,6 +200,7 @@ function createTaskRight(task){// TODO
 function clearTasks(){
   document.querySelector(".tasks").innerHTML="";
 }
+
 
 function displayActiveProjectTitle(title){
   const projectTitle = document.querySelector(".project-title"); 
@@ -212,7 +214,26 @@ function createTask(title, description, dueDate, priority, color, completed){
 }
 
 
+function submitTaskForm(){ //TODO: Finish
+  const submitTaskForm = document.querySelector(".create-task-form")
+  submitTaskForm.addEventListener("submit", function(e){
+      e.preventDefault();
 
+      const taskTitle = document.getElementById("task-title").value;
+
+      const dueDate = document.getElementById("date").value;
+
+      const priority = document.getElementById("color-priority").value
+
+      todo.projects.forEach((project) =>{
+        if(project.title == todo.activeProject){
+          project.addTask(createTask(taskTitle, "", dueDate, priority, "", false));
+          displayActiveProjectTasks(todo.activeProject)
+        }
+      })
+      
+  })
+}
 
 
 // Pre-existing project with task
@@ -226,3 +247,4 @@ todo.activeProject=existingProj.title;
 
 addProject();
 refreshProjects();
+submitTaskForm();
