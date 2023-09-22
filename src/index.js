@@ -136,6 +136,8 @@ function displayActiveProjectTasks(projectTitle){
     const taskDiv = createTaskDiv(task);
     document.querySelector(".tasks").appendChild(taskDiv);
   })
+
+  showTasksIfActiveProject();
 }
 
 function createTaskDiv(task){ 
@@ -231,10 +233,28 @@ function submitTaskForm(){ //TODO: Finish
           displayActiveProjectTasks(todo.activeProject)
         }
       })
-      
+      closeTaskForm();
   })
 }
 
+function closeTaskForm(){
+  const addTasksForm = document.querySelector(".create-task-form")
+  addTasksForm.style.display = "none";
+}
+
+function hideTasksIfNoActiveProject(){
+  const tasksDiv = document.querySelector(".tasks");
+  tasksDiv.style.display="none";
+  const tasksHeader = document.querySelector('.tasks-header');
+  tasksHeader.style.display = "none";
+}
+
+function showTasksIfActiveProject(){
+  const tasksDiv = document.querySelector(".tasks");
+  tasksDiv.style.display="flex";
+  const tasksHeader = document.querySelector('.tasks-header');
+  tasksHeader.style.display = "flex";
+}
 
 // Pre-existing project with task
 let existingProj = createProject("Project 1Title");
@@ -242,9 +262,9 @@ existingProj.addTask(createTask("Task1", "Task 1 Description", "Due Date", 3, fa
 existingProj.addTask(createTask("Task2", "Task 2 Description", "Due Date", 2, false));
 
 todo.projects.push(existingProj);
-
 todo.activeProject=existingProj.title;
 
 addProject();
 refreshProjects();
 submitTaskForm();
+hideTasksIfNoActiveProject();
