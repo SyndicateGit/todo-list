@@ -34,12 +34,11 @@ function addProject(){
       alert("Project Title Already Exist.");
       return;
     }
-    
-    todo.projects.push(createProject(project_title));
+    const newProject = createProject(project_title);
+    todo.projects.push(newProject);
 
     refreshProjects()
-    
-
+ 
     // Reset and hide project form after add.
     document.getElementById("project-title").value = '';
     form.style = 'none';

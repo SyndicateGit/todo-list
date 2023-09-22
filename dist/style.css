@@ -5,8 +5,10 @@
   --agua: #00B3BB;
   --light-aqua: #00E6AA;
   --dark-aqua: #0E9AA1;
+  --agua-gradient: linear-gradient(90deg, var(--agua), var(--light-aqua));
 
   --background: linear-gradient(90deg, var(--agua), var(--light-aqua));
+
 }
 
 *,
@@ -128,7 +130,7 @@ a{
   cursor: pointer;
 }
 .nav-icon,
-.new-project-icon{
+.add-icon{
   height: 40px;
   width: auto;
   cursor: pointer;
@@ -216,7 +218,8 @@ h2{
   justify-content: space-between;
 }
 
-.project-button{
+.project-button,
+.task-button{
   text-align: center;
   width: 80px;
   height: 40px;
@@ -251,23 +254,90 @@ h2{
 
 .create-task-container{
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
+  padding: 10px;
+  
+}
 
+.create-task-form{
+  display: none;
+  flex-direction: column;
   gap: 15px;
-  padding: 20px;
   border-radius: 3px;
   border: 2px solid;
-  background-color: var(--light-aqua);
+  background-color: whitesmoke;
+
+  position: absolute;
 }
 
-input,
-select{
-  padding: 5px;
-  font-size: 0.8rem;
+.create-task-buttons{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: -10px;
+  gap: 20px;
+}
+
+.add-task-header{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: 1.2rem;
   font-weight: bold;
+  background: var(--light-aqua);
+  padding: 10px;
+}
+input,
+select,
+label{
+  padding: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 100%;
 }
 
+.tasks-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid lightgray;
+  width: 75%;
+}
+
+.tasks{
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  border-radius: 3px;
+  transition: 0.3s ease-in-out;
+}
+
+.tasks:hover{
+  background-color: whitesmoke;
+}
+
+.task{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  gap: 2.9rem;
+}
+
+.task-left, 
+.task-right{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.icon{
+  width: 40px;
+  height: auto;
+}
 
 /*Footer Section*/
 .footer{

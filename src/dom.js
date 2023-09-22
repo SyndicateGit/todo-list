@@ -26,10 +26,18 @@ function toggleProjectNav(){
   })
 } 
 
+function openAddTasksForm(){
+  document.querySelector(".add-tasks").addEventListener("click", function(e){
+    const addTasksForm = document.querySelector(".create-task-form")
+    addTasksForm.style.display = "flex";
+  })
+}
+
 function addAllDomEvents(){
   addNewProjectForm();
   cancelProjectForm();
   toggleProjectNav();
+  openAddTasksForm();
 }
 
 export default addAllDomEvents;
