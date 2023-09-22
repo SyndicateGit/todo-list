@@ -33,11 +33,19 @@ function openAddTasksForm(){
   })
 }
 
+function closeTasksForm(){
+  document.querySelector(".cancel-add-task").addEventListener("click", function(e){
+    const addTasksForm = document.querySelector(".create-task-form")
+    addTasksForm.style.display = "none";
+  })
+}
+
 function addAllDomEvents(){
   addNewProjectForm();
   cancelProjectForm();
   toggleProjectNav();
   openAddTasksForm();
+  closeTasksForm();
 }
 
 export default addAllDomEvents;
