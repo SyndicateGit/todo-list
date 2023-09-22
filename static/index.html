@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><script defer src="bundle.js?66a1077c6c33eec05083"></script></head>
+<html><head><script defer src="bundle.js?70eaed7e63c049f552cf"></script></head>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -36,7 +36,7 @@
             <div class="projects-container">
               <div class="projects-header">
                 <h2>Projects</h2>
-                <img id="new-project-icon" class="new-project-icon" src="../img/new-project.svg" alt="">
+                <img id="new-project-icon" class="add-icon" src="../img/new-project.svg" alt="">
               </div>
               <div class="projects">
                 <div class="projects-list">
@@ -57,21 +57,43 @@
           </nav>
         <div class="tasks-container">
           <h1 class="project-title">Select A Project</h1>
-          <div class="create-task-container">
-            <input type="text" id="task-title" placeholder="Task Title">
-            <input type="date" name="date" id="date">
-            <label for="color-priority">Priority:</label>
-            <select name="color-priority" id="priority">
-              <option value="red">High</option>
-              <option value="yellow">Medium</option>
-              <option value="green">Low</option>
-            </select>
-          </div>
+          <header class="tasks-header">
+            <h2>Tasks</h2>
+            <input class="add-icon add-tasks" type="image" src="../img/new-project.svg">
+          </header>
+          <form class="create-task-form">
+            <div class="add-task-header">Add Task</div>
+            <div class="create-task-container">
+              <label for="task-title">Task Title:</label>
+              <input type="text" 
+              name="task-title" 
+              id="task-title"
+              placeholder="Task Title">
+              <label for="date">Due Date:</label>
+              <input type="date" name="date" id="date">
+              <label for="color-priority">Priority:</label>
+              <select name="color-priority" id="priority">
+                <option value="red">High</option>
+                <option value="yellow">Medium</option>
+                <option value="green">Low</option>
+              </select>
+            </div>
+            <div class="create-task-buttons">
+              <button class="task-button add">Add</button>
+              <button class="task-button cancel">Cancel</button>
+            </div>
+          </form>
           <div class="tasks">
-            <div class="task">
-              <button class="completed"></button>
-              <div class="task-title">Task Title</div>
-              <div class="date">Date</div>
+            <div class="task" id="task-title">
+              <div class="task-left">
+                <input class="icon complete" type="image" src="../img/circle-outline.svg">
+                <div class="task-title">Task Title</div>
+              </div>
+              <div class="task-right">
+                <p>Due:</p>
+                <div class="date">12/13/2023</div>
+                <input class="icon delete" type="image" src="../img/delete-icon.svg">
+              </div>
             </div>
           </div>
         </div>
