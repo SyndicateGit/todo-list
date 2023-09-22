@@ -128,9 +128,77 @@ function displayActiveProjectTasks(project){
   displayActiveProjectTitle(activeProject.title);
 
   let activeTasks = activeProject.getTasks();
+
   console.log(activeTasks); // TODO: display tasks
+  
+  clearTasks();
+
+  activeTasks.forEach((task)=>{
+    const taskDiv = createTaskDiv(task);
+    document.querySelector(".tasks").appendChild(taskDiv);
+  })
 }
 
+function createTaskDiv(task){ //TODO
+  const taskDiv = document.createElement("div");
+  taskDiv.classList.add("task")
+  taskDiv.id = task.title;
+
+  const taskLeft = createTaskLeft(task);
+  const taskRight = createTaskRight(task);
+
+  taskDiv.appendChild(taskLeft);
+  taskDiv.appendChild(taskRight);
+  return taskDiv;
+}
+
+function createTaskLeft(task){ //TODO
+  const taskLeft = document.createElement("div");
+  taskLeft.classList.add("task-left");
+
+  const taskComplete = document.createElement("input");
+  taskComplete.classList.add("icon"); 
+  taskComplete.classList.add("complete"); 
+  taskComplete.type = "image";
+  taskComplete.src = "../img/circle-outline.svg";
+
+  const taskTitle = document.createElement("div");
+  taskTitle.classList.add("task-title")
+  taskTitle.textContent = task.title;
+
+  taskLeft.appendChild(taskComplete);
+  taskLeft.appendChild(taskTitle);
+
+  return taskLeft
+}
+
+function createTaskRight(task){// TODO
+  const taskRight = document.createElement("div");
+  taskRight.classList.add("task-right");
+
+  const due = document.createElement("p");
+  due.textContent = "Due:";
+
+  const date = document.createElement("div");
+  date.classList.add("date")
+  date.textContent = task.dueDate;
+
+  const deleteBtn = document.createElement("input");
+  deleteBtn.classList.add("icon")
+  deleteBtn.classList.add("delete");
+  deleteBtn.type = "image";
+  deleteBtn.src = "../img/delete-icon.svg";
+
+  taskRight.appendChild(due);
+  taskRight.appendChild(date);
+  taskRight.appendChild(deleteBtn);
+
+  return taskRight;
+}
+
+function clearTasks(){
+  document.querySelector(".tasks").innerHTML="";
+}
 
 function displayActiveProjectTitle(title){
   const projectTitle = document.querySelector(".project-title"); 
@@ -153,6 +221,8 @@ existingProj.addTask(createTask("Task1", "Task 1 Description", "Due Date", 3, fa
 existingProj.addTask(createTask("Task2", "Task 2 Description", "Due Date", 2, false));
 
 todo.projects.push(existingProj);
+
+todo.activeProject=existingProj.title;
 
 addProject();
 refreshProjects();
