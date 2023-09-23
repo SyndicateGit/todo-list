@@ -66,6 +66,22 @@ function fetchProject(Title){ // Added to TodoPage Class
   return fetch;
 }
 
+function updateTaskCompleted(taskTitle){
+  todo.projects.forEach((project)=>{
+    if(project.title == todo.activeProject){
+      project.tasks.forEach((task)=>{
+        if(task.title == taskTitle){
+          if(task.completed){
+            task.completed = false;
+          }else{
+            task.completed = true;
+          }
+        }
+      })
+    }
+  })
+}
+
 function refreshProjects(){
   // Deletes projects
   const projectList = document.querySelector(".projects-list");
@@ -136,7 +152,9 @@ function displayActiveProjectTasks(projectTitle){
     return a.priority - b.priority;
   })
 
-  console.log(activeTasks);
+  activeTasks.sort(function(a,b){
+    return(a.completed === b.completed)? 0: a.completed? 1:-1;
+  })
 
   activeTasks.forEach((task)=>{
     const taskDiv = createTaskDiv(task);
@@ -168,9 +186,19 @@ function createTaskLeft(task){
   taskComplete.classList.add("icon"); 
   taskComplete.classList.add("complete"); 
   taskComplete.type = "image";
-  taskComplete.src = "../img/circle-outline.svg";
-  //TODO: Add complete task function
+  taskComplete.id = task.title;
 
+  if(task.completed){
+    taskComplete.src = "../img/check-circle-outline.svg"
+  } else{
+    taskComplete.src = "../img/circle-outline.svg"
+  }
+
+  taskComplete.addEventListener("click", function(e){
+    updateTaskCompleted(taskComplete.id);
+    displayActiveProjectTasks(todo.activeProject);
+  });
+  
   const taskTitle = document.createElement("div");
   taskTitle.classList.add("task-title")
   taskTitle.textContent = task.title;
@@ -178,7 +206,7 @@ function createTaskLeft(task){
   taskLeft.appendChild(taskComplete);
   taskLeft.appendChild(taskTitle);
 
-  return taskLeft
+  return taskLeft;
 }
 
 function createTaskRight(task){
@@ -218,7 +246,6 @@ function displayActiveProjectTitle(title){
 
 function createTask(title, description, dueDate, priority, color, completed){
   const task = new Task(title, description, dueDate, priority, color, completed);
-  console.log(task);
   return task;
 }
 
