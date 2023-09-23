@@ -131,6 +131,12 @@ function displayActiveProjectTasks(projectTitle){
 
   
   clearTasks();
+  
+  activeTasks.sort(function(a, b){
+    return a.priority - b.priority;
+  })
+
+  console.log(activeTasks);
 
   activeTasks.forEach((task)=>{
     const taskDiv = createTaskDiv(task);
@@ -143,6 +149,7 @@ function displayActiveProjectTasks(projectTitle){
 function createTaskDiv(task){ 
   const taskDiv = document.createElement("div");
   taskDiv.classList.add("task")
+  taskDiv.classList.add("priority" +task.priority);
   taskDiv.id = task.title;
 
   const taskLeft = createTaskLeft(task);
@@ -255,6 +262,12 @@ function showTasksIfActiveProject(){
   const tasksHeader = document.querySelector('.tasks-header');
   tasksHeader.style.display = "flex";
 }
+
+//TODO: add delete project button function
+
+//TODO: add delete task button function
+
+//TODO: prevent form submission if missing info.
 
 // Pre-existing project with task
 let existingProj = createProject("Project 1Title");
