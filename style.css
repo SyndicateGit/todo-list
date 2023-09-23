@@ -340,6 +340,19 @@ label{
   height: auto;
 }
 
+/*Task Priority Coloring*/
+.priority1{
+  border-left: 2px solid red;
+}
+
+.priority2{
+  border-left: 2px solid orange;
+}
+
+.priority3{
+  border-left: 2px solid green;
+}
+
 /*Footer Section*/
 .footer{
   margin-top: auto;
