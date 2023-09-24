@@ -225,13 +225,26 @@ function createTaskRight(task){
   deleteBtn.classList.add("delete");
   deleteBtn.type = "image";
   deleteBtn.src = "../img/delete-icon.svg";
-  //TODO: delete task function
+  deleteBtn.addEventListener("click", function(){
+    deleteTask(task.title);
+    displayActiveProjectTasks(todo.activeProject);
+  }); // Without function wrapping it gets triggered upon page load instead of click.
 
   taskRight.appendChild(due);
   taskRight.appendChild(date);
   taskRight.appendChild(deleteBtn);
 
   return taskRight;
+}
+
+function deleteTask(taskTitle){
+  todo.projects.forEach((project)=>{
+    if(project.title == todo.activeProject){
+      project.tasks = project.tasks.filter(function(task){
+        return task.title !== taskTitle;
+      })
+    }
+  })
 }
 
 function clearTasks(){
@@ -291,6 +304,7 @@ function showTasksIfActiveProject(){
 }
 
 //TODO: add delete project button function
+
 
 //TODO: add delete task button function
 
