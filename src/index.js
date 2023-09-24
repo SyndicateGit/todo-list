@@ -362,8 +362,8 @@ function showTasksDiv(){
 //Todo Local Storage:
 if(localStorage.getItem("projects") == null){
   let existingProj = createProject("Project 1Title");
-  existingProj.addTask(createTask("Task1", "Task 1 Description", "Due Date", 3, false));
-  existingProj.addTask(createTask("Task2", "Task 2 Description", "Due Date", 2, false));
+  existingProj.tasks.push(createTask("Task1", "Task 1 Description", "Due Date", 3, false));
+  existingProj.tasks.push(createTask("Task2", "Task 2 Description", "Due Date", 2, false));
   
   todo.projects.push(existingProj);
   todo.activeProject=existingProj.title;
