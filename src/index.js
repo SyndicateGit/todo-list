@@ -1,6 +1,6 @@
 import Project from "./Project";
 import addAllDomEvents from "./dom";
-import Task from "./task";
+import Task from "./Task";
 
 
 
@@ -20,12 +20,14 @@ class Todo{
         })
       }
     })
+    updateProjectsLocalStorage()
   }
 
   deleteProject(projectTitle){
     todo.projects = todo.projects.filter(function(project){
       return project.title !== projectTitle;
     })
+    updateProjectsLocalStorage()
   }
   
 }
@@ -65,7 +67,7 @@ function addProject(){
     document.getElementById("project-title").value = '';
     form.style = 'none';
   })
-
+  updateProjectsLocalStorage()
 }
 
 function projectTitleAlreadyExist(Title){ // Added to TodoPage Class
@@ -120,6 +122,9 @@ function refreshProjects(){
       todo.deleteProject(arrayItem.title);
       refreshProjects();
       displayActiveProjectTitle("Select A Project")
+      if(todo.projects.length != 0){
+        todo.activeProject = todo.projects[0];
+      }
       hideTasksDiv();
     });
 
@@ -133,7 +138,7 @@ function refreshProjects(){
     project.addEventListener("click", function(){
       todo.activeProject = project.id;
       setProjectActive(project);
-      displayActiveProjectTasks(project.id);
+      displayActiveProjectTasks(todo.activeProject);
     })
 
     setProjectActive(document.getElementById(todo.activeProject));
@@ -174,7 +179,7 @@ function displayActiveProjectTasks(projectTitle){
     return;
   }
 
-  let activeTasks = activeProject.getTasks();
+  let activeTasks = activeProject.tasks;
   
 
   activeTasks.sort(function(a, b){
@@ -191,6 +196,7 @@ function displayActiveProjectTasks(projectTitle){
   })
 
   showTasksDiv();
+  
 }
 
 
@@ -306,12 +312,14 @@ function submitTaskForm(){
 
       todo.projects.forEach((project) =>{
         if(project.title == todo.activeProject){
-          project.addTask(createTask(taskTitle, "", dueDate, priority, "", false));
+          project.tasks.push(createTask(taskTitle, "", dueDate, priority, "", false));
+          updateProjectsLocalStorage()
           displayActiveProjectTasks(todo.activeProject)
         }
       })
       closeTaskForm();
   })
+
 }
 
 function closeTaskForm(){
@@ -333,6 +341,7 @@ function updateTaskCompleted(taskTitle){
       })
     }
   })
+  updateProjectsLocalStorage()
 }
 
 function hideTasksDiv(){
@@ -349,14 +358,29 @@ function showTasksDiv(){
   tasksHeader.style.display = "flex";
 }
 
+// Pre-existing project with tasks if no local storage
+//Todo Local Storage:
+if(localStorage.getItem("projects") == null){
+  let existingProj = createProject("Project 1Title");
+  existingProj.addTask(createTask("Task1", "Task 1 Description", "Due Date", 3, false));
+  existingProj.addTask(createTask("Task2", "Task 2 Description", "Due Date", 2, false));
+  
+  todo.projects.push(existingProj);
+  todo.activeProject=existingProj.title;
 
-// Pre-existing project with task
-let existingProj = createProject("Project 1Title");
-existingProj.addTask(createTask("Task1", "Task 1 Description", "Due Date", 3, false));
-existingProj.addTask(createTask("Task2", "Task 2 Description", "Due Date", 2, false));
+  const serlializedTodoProjects = JSON.stringify(todo.projects);
 
-todo.projects.push(existingProj);
-todo.activeProject=existingProj.title;
+  localStorage.setItem("projects", serlializedTodoProjects);
+} else{
+  const projectsFromStorage = JSON.parse(localStorage.getItem("projects"));
+  todo.projects = projectsFromStorage;
+  console.log(projectsFromStorage);
+}
+
+function updateProjectsLocalStorage(){
+  const serlializedTodoProjects = JSON.stringify(todo.projects);
+  localStorage.setItem("projects", serlializedTodoProjects);
+}
 
 // Load up projects, hide task form, and hide task div.
 addProject();
