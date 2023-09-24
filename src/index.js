@@ -47,6 +47,11 @@ function addProject(){
     // Create project and push to projects
     const project_title = document.getElementById('project-title').value;
 
+    if(project_title == ""){
+      alert("Please input a project title.");
+      return;
+    }
+
     if(projectTitleAlreadyExist(project_title)){
       alert("Project Title Already Exist.");
       return;
@@ -171,7 +176,6 @@ function displayActiveProjectTasks(projectTitle){
 
   let activeTasks = activeProject.getTasks();
   
-  //Todo: sort by date:
 
   activeTasks.sort(function(a, b){
     return a.priority - b.priority;
@@ -286,7 +290,17 @@ function submitTaskForm(){
 
       const taskTitle = document.getElementById("task-title").value;
 
+      if(taskTitle == ""){
+        alert("Please Enter A Task Title.");
+        return;
+      }
+
       const dueDate = document.getElementById("date").value;
+
+      if(dueDate == ""){
+        alert("Please Select A Due Date.");
+        return;
+      }
 
       const priority = document.getElementById("color-priority").value
 

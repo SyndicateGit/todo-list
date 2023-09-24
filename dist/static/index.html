@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html><head><script defer src="bundle.js?7ab614398573fdffb8d5"></script></head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Raymond's Todo List</title>
+    <link rel="stylesheet" href="../style.css">
+  <body>
+    <div class="content">
+      <header class="header">
+        <img id="menu-button" class="black-to-white-filter header-icon" src="../img/menu.svg" alt="menu-button">
+        <div class="logo">
+          <img class="black-to-white-filter header-icon" src="../img/logo.png" alt="logo">
+          <h1 class="title">ToDo</h1>
+        </div>
+      </header>
+
+      <main class="main">
+        <nav class="nav toggled">
+          <div class="nav-content-container">
+            <div class="timeline-container">
+              <button class="nav-button all">
+                <img class="nav-icon" src="../img/all.svg" alt="">
+                <h2>All</h2>
+              </button>
+              <button class="nav-button today">
+                <img class="nav-icon" src="../img/today.svg" alt="">
+                <h2>Today</h2>
+              </button>
+              <button class="nav-button completed">
+                <img class="nav-icon" src="../img/completed.svg" alt="">
+                <h2>Completed</h2>
+              </button>
+            </div>
+            <div class="projects-container">
+              <div class="projects-header">
+                <h2>Projects</h2>
+                <img id="new-project-icon" class="add-icon" src="../img/new-project.svg" alt="">
+              </div>
+              <div class="projects">
+                <div class="projects-list">
+                  <!--Generated-->
+                </div>
+                <form id="project-form" class="project-form" action="https://httpbin.org/post" method="post">
+                  <div id="new-project-form">
+                    <input class="project-input" type="text" name="project_title"
+                    id="project-title" placeholder="New Project Title">
+                  </div>
+                  <div class="project-buttons-container">
+                    <button class="project-button add" type="submit">Add</button>
+                    <button class="project-button cancel" id="cancel-button" type="button">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </nav>
+        <div class="tasks-container">
+          <h1 class="project-title">Select A Project</h1>
+          <header class="tasks-header">
+            <h2>Tasks</h2>
+            <input class="add-icon add-tasks" type="image" src="../img/new-project.svg">
+          </header>
+          <form class="create-task-form">
+            <div class="add-task-header">Add Task</div>
+            <div class="create-task-container">
+              <label for="task-title">Task Title:</label>
+              <input type="text" 
+              name="task-title" 
+              id="task-title"
+              placeholder="Task Title">
+              <label for="date">Due Date:</label>
+              <input type="date" name="date" id="date">
+              <label for="color-priority">Priority:</label>
+              <select name="color-priority" id="color-priority">
+                <option value=1 >High: Red</option>
+                <option value=2>Medium: Yellow</option>
+                <option value=3>Low: Green</option>
+              </select>
+            </div>
+            <div class="create-task-buttons">
+              <button class="task-button add add-task" type="submit">Add</button>
+              <button class="task-button cancel cancel-add-task" type="button">Cancel</button>
+            </div>
+          </form>
+          <div class="tasks">
+            <div class="task" id="task-title">
+              <div class="task-left">
+                <input class="icon complete" type="image" src="../img/circle-outline.svg">
+                <div class="task-title">Task Title</div>
+              </div>
+              <div class="task-right">
+                <p>Due:</p>
+                <div class="date">12/13/2023</div>
+                <input class="icon delete" type="image" src="../img/delete-icon.svg">
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="footer">
+        <a id="github_link" href="https://github.com/SyndicateGit"><p>Copyright © SyndicateGit</p><img src="../img/github_icon.png" alt="github_icon" id="github-icon" class="black-to-white-filter"></a>
+      </footer>
+    </div>
+  </body>
+</html>
