@@ -87,6 +87,11 @@ function refreshProjects(){
   const projectList = document.querySelector(".projects-list");
   projectList.innerHTML = '';
 
+  if (todo.projects.length == 0){
+    console.log("empty");
+    return null;
+  }
+
   // Reloads projects
   todo.projects.forEach(function(arrayItem){
     const project = document.createElement("button");
@@ -102,7 +107,13 @@ function refreshProjects(){
     const deleteIcon = document.createElement('img');
     deleteIcon.classList.add("nav-icon");
     deleteIcon.src="../img/delete-icon.svg";
-    deleteIcon.classList.add("delete-project"); // TODO: Add delete project event listener.
+    deleteIcon.classList.add("delete-project"); 
+    deleteIcon.addEventListener("click",function(){
+      deleteProject(arrayItem.title);
+      refreshProjects();
+      displayActiveProjectTitle("Select A Project")
+      hideTasksIfNoActiveProject();
+    });
 
     project.id = arrayItem.title;
 
@@ -123,6 +134,12 @@ function refreshProjects(){
   })
 }
 
+function deleteProject(projectTitle){
+  todo.projects = todo.projects.filter(function(project){
+    return project.title !== projectTitle;
+  })
+}
+
 // Sets active project class active.
 function setProjectActive(project){ 
   const buttons = document.querySelectorAll(".project-tab");
@@ -139,14 +156,22 @@ function setProjectActive(project){
 }
 
 function displayActiveProjectTasks(projectTitle){
-  const activeProject = fetchProject(projectTitle);
-  displayActiveProjectTitle(projectTitle);
+  if(todo.projects.length == 0){
+    clearTasks();
+    return;
+  }
 
+  const activeProject = fetchProject(projectTitle);
+
+  displayActiveProjectTitle(projectTitle);
+  clearTasks();
+  showTasksIfActiveProject();
+
+  if(activeProject.tasks.length==0){
+    return;
+  }
 
   let activeTasks = activeProject.getTasks();
-
-  
-  clearTasks();
   
   activeTasks.sort(function(a, b){
     return a.priority - b.priority;
@@ -305,8 +330,6 @@ function showTasksIfActiveProject(){
 
 //TODO: add delete project button function
 
-
-//TODO: add delete task button function
 
 //TODO: prevent form submission if missing info.
 
