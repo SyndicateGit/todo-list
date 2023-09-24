@@ -11,6 +11,23 @@ class Todo{
     this.projects = [];
     this.activeProject; // Remembers which project is active
   }
+
+  deleteTask(taskTitle){
+    todo.projects.forEach((project)=>{
+      if(project.title == todo.activeProject){
+        project.tasks = project.tasks.filter(function(task){
+          return task.title !== taskTitle;
+        })
+      }
+    })
+  }
+
+  deleteProject(projectTitle){
+    todo.projects = todo.projects.filter(function(project){
+      return project.title !== projectTitle;
+    })
+  }
+  
 }
 
 const todo = new Todo();
@@ -66,21 +83,7 @@ function fetchProject(Title){ // Added to TodoPage Class
   return fetch;
 }
 
-function updateTaskCompleted(taskTitle){
-  todo.projects.forEach((project)=>{
-    if(project.title == todo.activeProject){
-      project.tasks.forEach((task)=>{
-        if(task.title == taskTitle){
-          if(task.completed){
-            task.completed = false;
-          }else{
-            task.completed = true;
-          }
-        }
-      })
-    }
-  })
-}
+
 
 function refreshProjects(){
   // Deletes projects
@@ -109,10 +112,10 @@ function refreshProjects(){
     deleteIcon.src="../img/delete-icon.svg";
     deleteIcon.classList.add("delete-project"); 
     deleteIcon.addEventListener("click",function(){
-      deleteProject(arrayItem.title);
+      todo.deleteProject(arrayItem.title);
       refreshProjects();
       displayActiveProjectTitle("Select A Project")
-      hideTasksIfNoActiveProject();
+      hideTasksDiv();
     });
 
     project.id = arrayItem.title;
@@ -134,11 +137,6 @@ function refreshProjects(){
   })
 }
 
-function deleteProject(projectTitle){
-  todo.projects = todo.projects.filter(function(project){
-    return project.title !== projectTitle;
-  })
-}
 
 // Sets active project class active.
 function setProjectActive(project){ 
@@ -165,7 +163,7 @@ function displayActiveProjectTasks(projectTitle){
 
   displayActiveProjectTitle(projectTitle);
   clearTasks();
-  showTasksIfActiveProject();
+  showTasksDiv();
 
   if(activeProject.tasks.length==0){
     return;
@@ -186,7 +184,13 @@ function displayActiveProjectTasks(projectTitle){
     document.querySelector(".tasks").appendChild(taskDiv);
   })
 
-  showTasksIfActiveProject();
+  showTasksDiv();
+}
+
+
+function displayActiveProjectTitle(title){
+  const projectTitle = document.querySelector(".project-title"); 
+  projectTitle.textContent = title;
 }
 
 function createTaskDiv(task){ 
@@ -251,7 +255,7 @@ function createTaskRight(task){
   deleteBtn.type = "image";
   deleteBtn.src = "../img/delete-icon.svg";
   deleteBtn.addEventListener("click", function(){
-    deleteTask(task.title);
+    todo.deleteTask(task.title);
     displayActiveProjectTasks(todo.activeProject);
   }); // Without function wrapping it gets triggered upon page load instead of click.
 
@@ -262,24 +266,9 @@ function createTaskRight(task){
   return taskRight;
 }
 
-function deleteTask(taskTitle){
-  todo.projects.forEach((project)=>{
-    if(project.title == todo.activeProject){
-      project.tasks = project.tasks.filter(function(task){
-        return task.title !== taskTitle;
-      })
-    }
-  })
-}
 
 function clearTasks(){
   document.querySelector(".tasks").innerHTML="";
-}
-
-
-function displayActiveProjectTitle(title){
-  const projectTitle = document.querySelector(".project-title"); 
-  projectTitle.textContent = title;
 }
 
 function createTask(title, description, dueDate, priority, color, completed){
@@ -288,7 +277,7 @@ function createTask(title, description, dueDate, priority, color, completed){
 }
 
 
-function submitTaskForm(){ //TODO: Finish
+function submitTaskForm(){
   const submitTaskForm = document.querySelector(".create-task-form")
   submitTaskForm.addEventListener("submit", function(e){
       e.preventDefault();
@@ -314,24 +303,36 @@ function closeTaskForm(){
   addTasksForm.style.display = "none";
 }
 
-function hideTasksIfNoActiveProject(){
+function updateTaskCompleted(taskTitle){
+  todo.projects.forEach((project)=>{
+    if(project.title == todo.activeProject){
+      project.tasks.forEach((task)=>{
+        if(task.title == taskTitle){
+          if(task.completed){
+            task.completed = false;
+          }else{
+            task.completed = true;
+          }
+        }
+      })
+    }
+  })
+}
+
+function hideTasksDiv(){
   const tasksDiv = document.querySelector(".tasks");
   tasksDiv.style.display="none";
   const tasksHeader = document.querySelector('.tasks-header');
   tasksHeader.style.display = "none";
 }
 
-function showTasksIfActiveProject(){
+function showTasksDiv(){
   const tasksDiv = document.querySelector(".tasks");
   tasksDiv.style.display="flex";
   const tasksHeader = document.querySelector('.tasks-header');
   tasksHeader.style.display = "flex";
 }
 
-//TODO: add delete project button function
-
-
-//TODO: prevent form submission if missing info.
 
 // Pre-existing project with task
 let existingProj = createProject("Project 1Title");
@@ -341,7 +342,8 @@ existingProj.addTask(createTask("Task2", "Task 2 Description", "Due Date", 2, fa
 todo.projects.push(existingProj);
 todo.activeProject=existingProj.title;
 
+// Load up projects, hide task form, and hide task div.
 addProject();
 refreshProjects();
 submitTaskForm();
-hideTasksIfNoActiveProject();
+hideTasksDiv();
