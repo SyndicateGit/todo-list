@@ -171,6 +171,8 @@ function displayActiveProjectTasks(projectTitle){
 
   let activeTasks = activeProject.getTasks();
   
+  //Todo: sort by date:
+
   activeTasks.sort(function(a, b){
     return a.priority - b.priority;
   })
