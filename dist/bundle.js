@@ -297,14 +297,14 @@ function refreshProjects(){
 
     const projectIcon = document.createElement("img");
     projectIcon.classList.add("nav-icon");
-    projectIcon.src="../img/menu.svg";
+    projectIcon.src="./img/menu.svg";
 
     const projectTitle = document.createElement("h2");
     projectTitle.textContent = arrayItem.title;
 
     const deleteIcon = document.createElement('img');
     deleteIcon.classList.add("nav-icon");
-    deleteIcon.src="../img/delete-icon.svg";
+    deleteIcon.src="./img/delete-icon.svg";
     deleteIcon.classList.add("delete-project"); 
     deleteIcon.addEventListener("click",function(){
       todo.deleteProject(arrayItem.title);
@@ -415,9 +415,9 @@ function createTaskLeft(task){
   taskComplete.id = task.title;
 
   if(task.completed){
-    taskComplete.src = "../img/check-circle-outline.svg"
+    taskComplete.src = "./img/check-circle-outline.svg"
   } else{
-    taskComplete.src = "../img/circle-outline.svg"
+    taskComplete.src = "./img/circle-outline.svg"
   }
 
   taskComplete.addEventListener("click", function(e){
@@ -450,7 +450,7 @@ function createTaskRight(task){
   deleteBtn.classList.add("icon")
   deleteBtn.classList.add("delete");
   deleteBtn.type = "image";
-  deleteBtn.src = "../img/delete-icon.svg";
+  deleteBtn.src = "./img/delete-icon.svg";
   deleteBtn.addEventListener("click", function(){
     todo.deleteTask(task.title);
     displayActiveProjectTasks(todo.activeProject);
